@@ -115,7 +115,7 @@ const NewReportModal = () => {
                   value={client}
                   data={data ? data.data : []}
                   onSelect={handleSelectedOption}
-                  labelKey="fullname"
+                  labelKey="name"
                   valueKey="id"
                   className="w-100"
                 />

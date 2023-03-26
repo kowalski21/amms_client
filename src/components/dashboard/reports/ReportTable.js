@@ -6,15 +6,15 @@ const ReportTable = ({ results }) => {
   const router = useRouter();
   return (
     <table className="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
-      <thead>
+      <thead className="thead-dark">
         <tr className="fw-bold text-muted bg-light">
           <th className="ps-4 rounded-start">Report Id</th>
-          <th className="ps-4 rounded-start">First Name</th>
-          <th className="min-w-100px">MiddleName</th>
-          <th className="min-w-100px">Surname</th>
+          <th className="ps-4 rounded-start">Name</th>
+          <th className="min-w-100px">Client No</th>
+          {/* <th className="min-w-100px">Surname</th> */}
 
           <th className="w-100px">Status</th>
-          <th className="w-100px">Station</th>
+          <th className="w-100px">Area</th>
           <th>Created At</th>
           <th className="w-100px">Action</th>
         </tr>
@@ -31,15 +31,15 @@ const ReportTable = ({ results }) => {
               </td>
               <td>
                 <span className=" fw-bold text-hover-primary mb-1 fs-6">
-                  {result.client.firstname}
+                  {result.client.name}
                 </span>
               </td>
               <td>
                 <span className=" fw-bold text-hover-primary mb-1 fs-6">
-                  {result.client.middlename}
+                  {result.area?.short_name} / {result.client.client_no}
                 </span>
               </td>
-              <td>{result.client.surname}</td>
+              {/* <td>{result.client.surname}</td> */}
               {/* <td className="text-uppercase">{client.gender}</td> */}
               <td className="text-uppercase">
                 {result.status == "draft" && (

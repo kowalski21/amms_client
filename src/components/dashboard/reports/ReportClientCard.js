@@ -97,12 +97,9 @@ const ReportClientCard = ({ reportId }) => {
         <div class="card-body p-4">
           <div className="row">
             <div className="col-md-9">
-              <h3 class="mb-3">
-                {data.client.firstname} {data.client.middlename}{" "}
-                {data.client.surname}
-              </h3>
+              <h3 class="mb-3">{data.client.name}</h3>
               <p class="small mb-0">
-                <i class="fe fe-book"></i> <span class="mx-2"></span>
+                <i class="fe fe-cast"></i> <span class="mx-2"></span>
                 <strong>Age {data.client.age} </strong> |{" "}
                 <strong className="text-uppercase">
                   Area : {data.area.name}
