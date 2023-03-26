@@ -13,8 +13,11 @@ import {
 } from "rsuite";
 
 const UpdateUser = ({ user }) => {
-  const { data } = useRoles(["formUserRoles"], {
-    fields: "id,name",
+  const { data } = useRoles({
+    queryKey: ["formUserRoles"],
+    query: {
+      fields: "id,name",
+    },
   });
   const [form, setForm] = useState({
     email: user.email.split("@")[0],

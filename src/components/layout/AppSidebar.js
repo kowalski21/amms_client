@@ -62,16 +62,18 @@ const AppSidebar = () => {
             </Link>
           </li>
         </ul>
-        <ul class="navbar-nav flex-fill w-100 mb-2">
-          <li class="nav-item dropdown">
-            <Link href={`/dashboard/areas`} legacyBehavior>
-              <a class="nav-link">
-                <i class="fe fe-archive fe-16"></i>
-                <span class="ml-3 item-text">Areas</span>
-              </a>
-            </Link>
-          </li>
-        </ul>
+        {["Administrator"].includes(user.role.name) && (
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+              <Link href={`/dashboard/areas`} legacyBehavior>
+                <a class="nav-link">
+                  <i class="fe fe-archive fe-16"></i>
+                  <span class="ml-3 item-text">Areas</span>
+                </a>
+              </Link>
+            </li>
+          </ul>
+        )}
         <ul class="navbar-nav flex-fill w-100 mb-2">
           <li class="nav-item dropdown">
             <Link href={`/dashboard/reports`} legacyBehavior>
@@ -90,16 +92,18 @@ const AppSidebar = () => {
             </a>
           </li>
         </ul> */}
-        <ul class="navbar-nav flex-fill w-100 mb-2">
-          <li class="nav-item dropdown">
-            <Link href={`/dashboard/users`} legacyBehavior>
-              <a class="nav-link sc">
-                <i class="fe fe-git-merge fe-16"></i>
-                <span class="ml-3 item-text">Users</span>
-              </a>
-            </Link>
-          </li>
-        </ul>
+        {["Administrator"].includes(user.role.name) && (
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+              <Link href={`/dashboard/users`} legacyBehavior>
+                <a class="nav-link sc">
+                  <i class="fe fe-git-merge fe-16"></i>
+                  <span class="ml-3 item-text">Users</span>
+                </a>
+              </Link>
+            </li>
+          </ul>
+        )}
       </nav>
     </aside>
   );

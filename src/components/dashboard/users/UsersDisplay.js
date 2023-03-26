@@ -15,7 +15,7 @@ const UsersDisplay = () => {
     fields: "id,email,first_name,last_name,role.id,role.name",
     meta: "*",
   });
-  const { data } = useUsers(["usersManagement", query], query, {
+  const { data } = useUsers(["usersManage", query], query, {
     keepPreviousData: true,
   });
 
@@ -41,6 +41,7 @@ const UsersDisplay = () => {
               name="searchRandom"
               placeholder="Search Users"
               value={search}
+              key="username"
               onChange={handleSearch}
             />
           </div>
