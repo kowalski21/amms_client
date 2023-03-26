@@ -68,7 +68,7 @@ const ListAreasDisplay = () => {
           </div>
         </div>
         <table className="table table-bordered">
-          <thead>
+          <thead className="thead-dark">
             <th>Area</th>
             <th>Short Name</th>
             <th>Action</th>

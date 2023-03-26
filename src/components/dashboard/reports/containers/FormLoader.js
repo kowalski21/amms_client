@@ -12,7 +12,8 @@ import RecommendationForm from "./RecommendationForm";
 import SaveToolbar from "./SaveToolbar";
 import SummaryReport from "./SummaryReport";
 import VitalsForm from "./VitalsForm";
-const FormLoader = ({ initial, reportId }) => {
+const FormLoader = ({ initial, reportId, user }) => {
+  const permissions = user.role.meta?.keys;
   const { showMsg } = useNotify();
   const activeTab = useTabStore((state) => state.activeTab);
   const [vitals, setVitals] = useState({
@@ -139,6 +140,9 @@ const FormLoader = ({ initial, reportId }) => {
   return (
     <Fragment>
       <div className="card-body">
+        {/* {JSON.stringify(permissions)} */}
+        {/* {permissions.includes(1)} */}
+        {/* {JSON.stringify(permissions.includes(1))} */}
         {activeTab == 1 && (
           <VitalsForm values={vitals} onChangeHandler={handleVitals} />
         )}

@@ -4,7 +4,7 @@ import React from "react";
 const PEForm = ({ values, onChangeHandler, client }) => {
   //   const client = useFormStore((state) => state.client);
   return (
-    <div className="card shadow">
+    <div className="">
       {/* {JSON.stringify(values)} */}
       <div className="card-header">
         <div className="card-title">

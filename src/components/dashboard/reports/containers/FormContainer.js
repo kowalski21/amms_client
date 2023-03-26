@@ -1,4 +1,5 @@
 import { useReport } from "@/hooks/report";
+import { useAuthStore } from "@/stores/auth";
 import { useFormStore } from "@/stores/form";
 import { useTabStore } from "@/stores/utils";
 import React, { Fragment } from "react";
@@ -8,6 +9,7 @@ import SaveToolbar from "./SaveToolbar";
 
 const FormContainer = ({ reportId }) => {
   const initialLoader = useFormStore((state) => state.initialLoader);
+  const user = useAuthStore((state) => state.user);
 
   const { data, isLoading } = useReport({
     id: reportId,
@@ -18,7 +20,9 @@ const FormContainer = ({ reportId }) => {
   });
   return (
     <div class="card mb-5" style={{ borderRadius: "15px" }}>
-      {data && <FormLoader initial={data} reportId={data.id} />}
+      {data && user && (
+        <FormLoader initial={data} reportId={data.id} user={user} />
+      )}
     </div>
   );
 };

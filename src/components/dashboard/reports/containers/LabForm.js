@@ -1,11 +1,11 @@
 import { useFormStore } from "@/stores/form";
 import React from "react";
-import { SelectPicker, useFormClassNames } from "rsuite";
+// import { SelectPicker, useFormClassNames } from "rsuite";
 
 const LabForm = ({ values, onChangeHandler, client }) => {
   //   const client = useFormStore((state) => state.client);
   return (
-    <div className="card">
+    <div className="">
       {/* {JSON.stringify(values)} */}
       {/* <div className="card-header">
         <div className="card-title">
@@ -14,7 +14,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
       </div> */}
       <div className="card-body">
         <div className="row mb-3">
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Full Blood Count
@@ -30,7 +30,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Malaria
@@ -46,7 +46,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Hepatitis B (HBSAg)
@@ -62,7 +62,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Liver Function Test
@@ -78,7 +78,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Kidney Function Test
@@ -94,7 +94,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 LipoGram (Lipid Profile)
@@ -113,7 +113,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
         </div>
 
         <div className="row mb-3">
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Urine Routine Examination
@@ -129,7 +129,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <div className="form-group mb-3">
               <label htmlFor="" className="form-label">
                 Stool Routine Examination
@@ -146,7 +146,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
             </div>
           </div>
           {client?.gender == "Male" ? (
-            <div className="col-md-2">
+            <div className="col-md-3">
               <div className="form-group mb-3">
                 <label htmlFor="" className="form-label">
                   PSA (Prostrate Screening)
@@ -163,7 +163,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </div>
             </div>
           ) : (
-            <div className="col-md-2">
+            <div className="col-md-3">
               <label htmlFor="" className="form-label">
                 Pap Smear (Cervival Screening)
               </label>
@@ -175,10 +175,9 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               />
             </div>
           )}
-          <div className="col-md-2">
+          <div className="col-md-3">
             <label htmlFor="" className="form-label">
-              Typhoid <br />
-              (Widal)
+              Typhoid (Widal)
             </label>
             <select
               value={values.widal}
@@ -197,7 +196,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               className="form-control"
             /> */}
           </div>
-          <div className="col-md-2">
+          <div className="col-md-3">
             <label htmlFor="" className="form-label">
               Fasting Blood Sugar (FBS) (mmol/l)
             </label>

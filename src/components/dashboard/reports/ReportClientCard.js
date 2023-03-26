@@ -6,7 +6,10 @@ import { getClientReferenceNumber } from "@/lib/utils";
 import { focusManager, useMutation } from "@tanstack/react-query";
 import { directus } from "@/lib/api";
 import { DateTime } from "luxon";
+import { useAuthStore } from "@/stores/auth";
 const ReportClientCard = ({ reportId }) => {
+  const user = useAuthStore((state) => state.user);
+
   const { data, isLoading } = useReport({
     id: reportId,
     queryKey: ["reportDetail", reportId],
@@ -43,7 +46,7 @@ const ReportClientCard = ({ reportId }) => {
     delete tmp["weight"];
     let payload = {
       client: {
-        name: `${data.client.firstname} ${data.client.middlename} ${data.client.surname}`,
+        name: data?.client?.name,
         // firstname: data.client.firstname,
         // middlename: data.client.middlename,
         // surname: data.client.surname,
@@ -77,8 +80,10 @@ const ReportClientCard = ({ reportId }) => {
       link.href = href;
       link.setAttribute(
         "download",
-        `${payload.client.name}_${payload.client.ref}.docx`
+        `${payload.client.name}_${payload.client.ref}.pdf`
       ); //or any other extension
+
+      // print(link.href);
       document.body.appendChild(link);
       link.click();
 
@@ -118,24 +123,26 @@ const ReportClientCard = ({ reportId }) => {
                 </strong>
               </p>
             </div>
-            <div className="col-md-3">
-              {data?.status == "published" ? (
-                <button
-                  className="btn btn-secondary ml-2"
-                  onClick={handlePrint}
-                >
-                  Download
-                </button>
-              ) : (
-                <button className="btn btn-primary" onClick={handleComplete}>
-                  Mark as Completed
-                </button>
-              )}
-            </div>
+            {["Administrator"].includes(user?.role.name) && (
+              <div className="col-md-3">
+                {data?.status == "published" ? (
+                  <button
+                    className="btn btn-secondary ml-2"
+                    onClick={handlePrint}
+                  >
+                    Download
+                  </button>
+                ) : (
+                  <button className="btn btn-primary" onClick={handleComplete}>
+                    Mark as Completed
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           <hr class="my-4" />
-          <TabLinks />
+          {user && <TabLinks user={user} />}
         </div>
       )}
       {isLoading && (

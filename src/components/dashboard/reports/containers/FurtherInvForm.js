@@ -2,12 +2,9 @@ import React from "react";
 
 const FurtherInvForm = ({ values, onChangeHandler }) => {
   return (
-    <div className="card">
-      <div className="card-header">
-        <div className="card-title">
-          <h4>Further Investigations</h4>
-        </div>
-      </div>
+    <div className="">
+      <h4>Further Investigations</h4>
+
       <div className="card-body">
         <div className="row">
           <div className="col-md-6">

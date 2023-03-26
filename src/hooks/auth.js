@@ -14,7 +14,7 @@ export const useAuth = () => {
       setLoading(true);
       try {
         const res = await directus.users.me.read({
-          fields: "*,role.id,role.name",
+          fields: "*,role.id,role.name,role.meta",
         });
         setLoading(false);
         modUser(res);

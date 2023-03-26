@@ -2,7 +2,7 @@ import React from "react";
 
 const EyeForm = ({ values, onChangeHandler }) => {
   return (
-    <div className="card">
+    <div className="">
       {/* <div className="card-header">
         <div className="card-title">
           <h4>Eye Examination</h4>

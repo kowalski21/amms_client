@@ -2,13 +2,9 @@ import React from "react";
 
 const RecommendationForm = ({ values, onChangeHandler }) => {
   return (
-    <div className="card">
-      <div className="card-header">
-        <div className="card-title">
-          <h4>Recommendations</h4>
-        </div>
-      </div>
+    <div className="">
       <div className="card-body">
+        <h4>Recommendations</h4>
         <div className="row">
           <div className="col">
             <div className="form-group">

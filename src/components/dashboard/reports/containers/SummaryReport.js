@@ -3,7 +3,7 @@ import { Label } from "reactstrap";
 
 const SummaryReport = ({ values, onChangeHandler }) => {
   return (
-    <div className="card">
+    <div className="">
       {/* <div className="card-header">
         <div className="card-title">
           <h4>{JSON.stringify(values)}</h4>

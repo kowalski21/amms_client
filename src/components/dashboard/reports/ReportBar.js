@@ -8,6 +8,7 @@ const ReportBar = ({ handleQuery }) => {
   const [sDate, setSDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [client, setClient] = useState("");
+  const [status, setStatus] = useState("");
   const [search, setSearch] = useState("");
   const [queryKey, setQueryKey] = useState({
     fields: "*,area.id,area.name",
@@ -17,6 +18,9 @@ const ReportBar = ({ handleQuery }) => {
   });
   const handleClientChange = (val) => {
     setClient(val);
+  };
+  const handleStatus = (val) => {
+    setStatus(val);
   };
   useStations({
     queryKey: ["form", "stations"],
@@ -40,6 +44,9 @@ const ReportBar = ({ handleQuery }) => {
     }
     if (client) {
       payload.push({ client: client });
+    }
+    if (status) {
+      payload.push({ status: status });
     }
 
     handleQuery({
@@ -89,10 +96,11 @@ const ReportBar = ({ handleQuery }) => {
         </div>
         <div className="col">
           <div className="form-group">
-            <label htmlFor="" className="form-label">
-              Clients
-            </label>
-            <br />
+            <div class="form-group ">
+              <span>
+                <h6>Filter By Minister & Wives </h6>
+              </span>
+            </div>
             <SelectPicker
               onSearch={handleClientSearch}
               // onChange={handleSearch}
@@ -102,6 +110,25 @@ const ReportBar = ({ handleQuery }) => {
               //   onSelect={handleSelectedOption}
               labelKey="name"
               valueKey="id"
+              className="w-100"
+            />
+          </div>
+        </div>
+        <div className="col">
+          <div className="form-group">
+            <div class="form-group ">
+              <span>
+                <h6>Filter By Report Status </h6>
+              </span>
+            </div>
+            <SelectPicker
+              onChange={handleStatus}
+              value={status}
+              data={[
+                { label: "Draft", value: "draft" },
+                { label: "Completed", value: "published" },
+              ]}
+              //   onSelect={handleSelectedOption}
               className="w-100"
             />
           </div>
