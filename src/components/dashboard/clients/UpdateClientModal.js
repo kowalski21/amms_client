@@ -14,7 +14,7 @@ const UpdateClientModal = ({ initial }) => {
     setModal(!modal);
   };
   const [form, setForm] = useState({
-    firstname: initial?.firstname,
+    name: initial?.name,
     middlename: initial?.middlename,
     surname: initial?.surname,
     mobile: initial?.mobile,
@@ -31,19 +31,19 @@ const UpdateClientModal = ({ initial }) => {
     setForm({ ...form, [key]: value });
   };
   const createMutation = useMutation({
-    mutationFn: async (payload) => {
-      const res = await directus.items("client").createOne(payload);
+    mutationFn: async ({ id, payload }) => {
+      const res = await directus.items("client").updateOne(id, payload);
       return res;
     },
     onSuccess: (data) => {
       toggle();
-      showMsg("NEW client CREATED !!!");
+      showMsg("client information CREATED !!!");
       focusManager.setFocused(true);
     },
   });
   const handleSubmit = () => {
     // form.name = form.name.toLowerCase();
-    createMutation.mutate(form);
+    createMutation.mutate({ id: initial.id, payload: form });
   };
   const handleGender = (val) => {
     handleFormChange("gender", val);
@@ -52,14 +52,7 @@ const UpdateClientModal = ({ initial }) => {
     handleFormChange("area", val);
   };
   const validateForm = () => {
-    return (
-      form.age &&
-      form.client_no &&
-      form.firstname &&
-      form.gender &&
-      form.area &&
-      form.surname
-    );
+    return form.age && form.client_no && form.name && form.gender && form.area;
   };
   return (
     <Fragment>
@@ -79,38 +72,10 @@ const UpdateClientModal = ({ initial }) => {
                 <input
                   type="text"
                   class="form-control form-control-md"
-                  onChange={(e) =>
-                    handleFormChange("firstname", e.target.value)
-                  }
-                  value={form.firstname}
+                  onChange={(e) => handleFormChange("name", e.target.value)}
+                  value={form.name}
                 />
-                <label class="form-label mt-2">First Name</label>
-              </div>
-            </div>
-            <div className="col">
-              <div class="form-outline mb-4">
-                <input
-                  type="text"
-                  class="form-control form-control-md"
-                  onChange={(e) =>
-                    handleFormChange("middlename", e.target.value)
-                  }
-                  value={form.middlename}
-                />
-                <label class="form-label mt-2">Middle Name</label>
-              </div>
-            </div>
-          </div>
-          <div className="row w-100">
-            <div className="col">
-              <div class="form-outline mb-4">
-                <input
-                  type="text"
-                  class="form-control form-control-md"
-                  onChange={(e) => handleFormChange("surname", e.target.value)}
-                  value={form.surname}
-                />
-                <label class="form-label mt-2">Surname</label>
+                <label class="form-label mt-2">Name</label>
               </div>
             </div>
             <div className="col">
@@ -174,7 +139,7 @@ const UpdateClientModal = ({ initial }) => {
         <Modal.Footer>
           {validateForm() && (
             <button className="btn btn-primary" onClick={handleSubmit}>
-              Save
+              Update
             </button>
           )}
           <button className="btn btn-secondary mx-2" onClick={toggle}>

@@ -11,7 +11,7 @@ export const useNotify = () => {
   const message = (msg, type) => {
     return (
       <Message showIcon type={type}>
-        {msg}
+        {msg.toUpperCase()}
       </Message>
     );
   };

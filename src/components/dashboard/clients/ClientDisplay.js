@@ -76,7 +76,7 @@ const ClientDisplay = () => {
           </div>
         </div>
         <table className=" table table-bordered">
-          <thead>
+          <thead className="thead-dark">
             <th>Name</th>
             <th>Ref Number</th>
             <th>Gender</th>
@@ -88,7 +88,7 @@ const ClientDisplay = () => {
             {data?.data.map((elem) => {
               return (
                 <tr key={elem.id}>
-                  <td>{elem.fullname}</td>
+                  <td>{elem.name}</td>
                   <td>
                     {elem.area.short_name}/{elem.client_no}
                   </td>

@@ -14,6 +14,7 @@ const NewClientModal = () => {
     setModal(!modal);
   };
   const [form, setForm] = useState({
+    name: "",
     firstname: "",
     middlename: "",
     surname: "",
@@ -24,6 +25,20 @@ const NewClientModal = () => {
     area: "",
     status: "published",
   });
+  const resetForm = () => {
+    setForm({
+      name: "",
+      firstname: "",
+      middlename: "",
+      surname: "",
+      mobile: "",
+      client_no: "",
+      age: "",
+      gender: "",
+      area: "",
+      status: "published",
+    });
+  };
   const [msg, setMsg] = useState("");
 
   const handleFormChange = (key, value) => {
@@ -36,6 +51,7 @@ const NewClientModal = () => {
       return res;
     },
     onSuccess: (data) => {
+      resetForm();
       toggle();
       showMsg("NEW client CREATED !!!");
       focusManager.setFocused(true);
@@ -52,14 +68,7 @@ const NewClientModal = () => {
     handleFormChange("area", val);
   };
   const validateForm = () => {
-    return (
-      form.age &&
-      form.client_no &&
-      form.firstname &&
-      form.gender &&
-      form.area &&
-      form.surname
-    );
+    return form.age && form.client_no && form.name && form.gender && form.area;
   };
   return (
     <Fragment>
@@ -74,20 +83,7 @@ const NewClientModal = () => {
         <hr />
         <Modal.Body>
           <div className="row w-100">
-            <div className="col">
-              <div class="form-outline mb-4">
-                <input
-                  type="text"
-                  class="form-control form-control-md"
-                  onChange={(e) =>
-                    handleFormChange("firstname", e.target.value)
-                  }
-                  value={form.firstname}
-                />
-                <label class="form-label mt-2">First Name</label>
-              </div>
-            </div>
-            <div className="col">
+            {/* <div className="col">
               <div class="form-outline mb-4">
                 <input
                   type="text"
@@ -99,7 +95,7 @@ const NewClientModal = () => {
                 />
                 <label class="form-label mt-2">Middle Name</label>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="row w-100">
             <div className="col">
@@ -107,10 +103,10 @@ const NewClientModal = () => {
                 <input
                   type="text"
                   class="form-control form-control-md"
-                  onChange={(e) => handleFormChange("surname", e.target.value)}
-                  value={form.surname}
+                  onChange={(e) => handleFormChange("name", e.target.value)}
+                  value={form.name}
                 />
-                <label class="form-label mt-2">Surname</label>
+                <label class="form-label mt-2">Name</label>
               </div>
             </div>
             <div className="col">
