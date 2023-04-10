@@ -1,21 +1,28 @@
 import { useFormStore } from "@/stores/form";
 import React, { useEffect, useState } from "react";
 import { Label, InputGroup, InputGroupText, Input } from "reactstrap";
-
+import { getBmiStatus, getBpStatus } from "@/lib/status";
 const VitalsForm = ({ values, onChangeHandler }) => {
   const [sys, setSys] = useState("");
   const [dias, setDias] = useState("");
+  const [bmi, setBmi] = useState("");
   const getBmiValue = () => {
     if (values.height && values.weight) {
       const tmp = parseFloat(values.weight) / parseFloat(values.height);
+      // setBmi(tmp.toFixed(2));
+      getBmi(tmp.toFixed(2));
       return tmp.toFixed(2);
     } else {
+      // setBmi("");
+      getBmi("");
       return "";
     }
   };
   const getBpValue = () => {
     if (values.sys && values.dias) {
-      onChangeHandler("bp", `${values.sys}/${values.dias}`);
+      let mp = `${values.sys}/${values.dias}`;
+      let mpStatus = getBpStatus(mp);
+      onChangeHandler("bp", `${values.sys}/${values.dias}mmHg(${mpStatus})`);
     } else {
       onChangeHandler("bp", "");
     }
@@ -27,8 +34,27 @@ const VitalsForm = ({ values, onChangeHandler }) => {
 
   useEffect(() => {
     onChangeHandler("bmi", getBmiValue());
-    getBmiValue();
+    // getBmiValue();
   }, [values.height, values.weight]);
+  // get status functions
+  const getBmi = (bmi) => {
+    if (bmi) {
+      let bmiFloat = parseFloat(bmi);
+
+      return getBmiStatus(bmiFloat);
+    } else {
+      return null;
+    }
+  };
+
+  const getLocalBp = (bp) => {
+    if (bp) {
+      return getBpStatus(bp);
+      // return bp;
+    } else {
+      return null;
+    }
+  };
   return (
     <div className="row">
       {/* {JSON.stringify(values)} */}
@@ -56,7 +82,7 @@ const VitalsForm = ({ values, onChangeHandler }) => {
       </div>
       <div className="col-md-2">
         <div className="form-outline mb-4">
-          <Label>BMI (kg/m2) </Label>
+          <Label>BMI (kg/m2) ({getBmi(values.bmi)}) </Label>
           <input
             type="text"
             className="form-control form-control-lg"
@@ -67,7 +93,7 @@ const VitalsForm = ({ values, onChangeHandler }) => {
       </div>
       <div className="col-md-3">
         <div className="form-outline mb-4">
-          <Label>Blood Pressure (mmHg)</Label>
+          <Label>Blood Pressure (mmHg) ({getLocalBp(values.bp)}) </Label>
           <InputGroup>
             <Input
               placeholder="Systolic"

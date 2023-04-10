@@ -7,6 +7,7 @@ import { focusManager, useMutation } from "@tanstack/react-query";
 import { directus } from "@/lib/api";
 import { DateTime } from "luxon";
 import { useAuthStore } from "@/stores/auth";
+// import PreviewModal from "./preview/PreviewModal";
 const ReportClientCard = ({ reportId }) => {
   const user = useAuthStore((state) => state.user);
 
@@ -40,7 +41,7 @@ const ReportClientCard = ({ reportId }) => {
     delete tmp["id"];
     tmp["wei"] = `${data.weight}kg`;
     tmp["height"] = `${data.height}m`;
-    tmp["bp"] = `${data.bp}mmHg`;
+    tmp["bp"] = `${data.bp}`;
     tmp["age"] = `${data.client.age} YEARS`;
     tmp["fbs"] = `${data.fbs}mmol/l`;
     delete tmp["weight"];
@@ -66,7 +67,7 @@ const ReportClientCard = ({ reportId }) => {
     // console.log(payload);
 
     const res = await directus.transport.post(
-      "http://localhost:8000/report",
+      process.env.NEXT_PUBLIC_REPORT_URL,
       payload,
       {
         responseType: "blob",
@@ -125,6 +126,7 @@ const ReportClientCard = ({ reportId }) => {
             </div>
             {["Administrator"].includes(user?.role.name) && (
               <div className="col-md-3">
+                {/* {data && <PreviewModal report={data.id} />} */}
                 {data?.status == "published" ? (
                   <button
                     className="btn btn-secondary ml-2"
