@@ -1,12 +1,13 @@
 import AreaSelectForm from "@/components/templates/AreaSelectForm";
 import { SelectPicker } from "rsuite";
+import { Input } from "reactstrap";
 import { useClients } from "@/hooks/client";
 import { useNotify } from "@/hooks/notify";
 import { useStations } from "@/hooks/station";
 import { directus } from "@/lib/api";
 import { focusManager, useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 // import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Modal } from "rsuite";
 
@@ -27,24 +28,36 @@ const NewReportModal = () => {
   });
 
   const [msg, setMsg] = useState("");
-  const handleSearch = (keyword, e) => {
-    setSearch(keyword);
-    if (keyword) {
-      setQueryKey({ ...queryKey, search: keyword });
-    } else {
-      setQueryKey({
-        fields: "*,area.id,area.name",
-        limit: 10,
-        meta: "*",
-        filter: {},
-      });
+  const [queryKey, setQueryKey] = useState({
+    fields: "*,area.id,area.name",
+    search: search,
+    limit: 10,
+  });
+
+  useEffect(() => {
+    if (search) {
+      setQueryKey({ ...queryKey, search: search });
     }
+  }, [search]);
+  const handleSearch = (keyword) => {
+    setSearch(keyword);
+    // setQueryKey({ ...queryKey, search: keywor });
+    // if (keyword) {
+    //   setQueryKey({ ...queryKey, search: keyword });
+    // } else {
+    //   setQueryKey({
+    //     fields: "*,area.id,area.name",
+    //     limit: 10,
+    //   });
+    // }
   };
 
   const handleSelectedOption = (value, item, event) => {
-    // console.log(item);
+    console.log(item);
+    setClient(client);
 
     setForm({ ...form, area: item?.area?.id, client: value });
+    // setClient(value);
     // console.log(value);
   };
 
@@ -65,8 +78,6 @@ const NewReportModal = () => {
     },
   });
   const handleSubmit = () => {
-    // console.log(form);
-    // form.name = form.name.toLowerCase();
     let payload = { client: form.client, area: form.area };
     createMutation.mutate(payload);
   };
@@ -79,19 +90,10 @@ const NewReportModal = () => {
   const handleClientChange = (val) => {
     setClient(val);
   };
-  const [queryKey, setQueryKey] = useState({
-    fields: "*,area.id,area.name",
-    limit: 10,
-    meta: "*",
-    filter: {},
-  });
 
   const { data, isLoading, error } = useClients({
     queryKey: ["formAddReport", queryKey],
     query: queryKey,
-    options: {
-      keepPreviousData: true,
-    },
   });
   return (
     <Fragment>
@@ -99,7 +101,7 @@ const NewReportModal = () => {
         <span class="fe fe-filter fe-12 mr-2"></span>Create
       </button>
       <Modal open={modal} onClose={toggle} backdrop="static">
-        {/* {JSON.stringify(form)} */}
+        {/* {JSON.stringify({ form, client })} */}
         <Modal.Header>
           <Modal.Title>New Medical Report</Modal.Title>
         </Modal.Header>
@@ -124,6 +126,7 @@ const NewReportModal = () => {
             </div>
             <div className="col-12">
               <div class="form-outline mb-4">
+                {/* <Input value={form.area} disabled /> */}
                 <AreaSelectForm
                   initial={form.area}
                   onChangeHandler={handleArea}

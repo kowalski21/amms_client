@@ -11,13 +11,20 @@ const AreaSelectForm = ({ initial, onChangeHandler, size = "md" }) => {
       onChangeHandler(val);
     }
   };
-  const { data, isLoading } = useStations([
+  [
     ["stationSelectTemplate"],
     {
       fields: "id,name,short_name",
       limit: 400,
     },
-  ]);
+  ];
+  const { data, isLoading } = useStations({
+    queryKey: ["stationSelectTemplate"],
+    query: {
+      fields: "id,name,short_name",
+      limit: 400,
+    },
+  });
   return (
     <SelectPicker
       loading={isLoading}

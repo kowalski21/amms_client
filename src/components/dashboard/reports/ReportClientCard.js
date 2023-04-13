@@ -4,12 +4,14 @@ import { Loader } from "rsuite";
 import TabLinks from "./TabLinks";
 import { getClientReferenceNumber } from "@/lib/utils";
 import { focusManager, useMutation } from "@tanstack/react-query";
-import { directus } from "@/lib/api";
+import { directus, fileApi } from "@/lib/api";
 import { DateTime } from "luxon";
 import { useAuthStore } from "@/stores/auth";
+import { useNotify } from "@/hooks/notify";
 // import PreviewModal from "./preview/PreviewModal";
 const ReportClientCard = ({ reportId }) => {
   const user = useAuthStore((state) => state.user);
+  const { showError, showMsg } = useNotify();
 
   const { data, isLoading } = useReport({
     id: reportId,
@@ -66,15 +68,19 @@ const ReportClientCard = ({ reportId }) => {
 
     // console.log(payload);
 
-    const res = await directus.transport.post(
-      process.env.NEXT_PUBLIC_REPORT_URL,
-      payload,
-      {
-        responseType: "blob",
-      }
-    );
-    if (res.status == 200) {
-      const href = URL.createObjectURL(res.raw);
+    const lres = await fileApi.post("/", payload, { responseType: "blob" });
+    // console.log(lres);
+
+    // const res = await directus.transport.post(
+    //   process.env.NEXT_PUBLIC_REPORT_URL,
+    //   payload,
+    //   {
+    //     responseType: "blob",
+    //   }
+    // );
+    // console.log(res);
+    if (lres.ok) {
+      const href = URL.createObjectURL(lres.data);
 
       // create "a" HTML element with href to file & click
       const link = document.createElement("a");
@@ -91,6 +97,9 @@ const ReportClientCard = ({ reportId }) => {
       // clean up "a" element & remove ObjectURL
       document.body.removeChild(link);
       URL.revokeObjectURL(href);
+    } else {
+      console.log(lres);
+      showError("ERROR OCCURED !!, CHECK VITAL PARAMETERS");
     }
     // console.log(res);
     // get the payload

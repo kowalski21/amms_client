@@ -12,7 +12,11 @@ import RecommendationForm from "./RecommendationForm";
 import SaveToolbar from "./SaveToolbar";
 import SummaryReport from "./SummaryReport";
 import VitalsForm from "./VitalsForm";
-const FormLoader = ({ initial, reportId, user }) => {
+import PresForm from "./PresForm";
+import { useAuthStore } from "@/stores/auth";
+import PharmForm from "./PharmForm";
+const FormLoader = ({ initial, reportId }) => {
+  const user = useAuthStore((state) => state.user);
   const permissions = user.role.meta?.keys;
   const { showMsg } = useNotify();
   const activeTab = useTabStore((state) => state.activeTab);
@@ -59,6 +63,7 @@ const FormLoader = ({ initial, reportId, user }) => {
   const [summary, setSummary] = useState(initial.summary);
   const [conclusion, setConclusion] = useState(initial.conclusion);
   const [reco, setReco] = useState(initial.reco);
+  const [pres, setPres] = useState(initial.meds);
 
   const handleVitals = (key, value) => {
     setVitals({ ...vitals, [key]: value });
@@ -166,6 +171,10 @@ const FormLoader = ({ initial, reportId, user }) => {
         {activeTab == 5 && (
           <FurtherInvForm values={ecg} onChangeHandler={handleEcg} />
         )}
+
+        {activeTab == 8 && <PresForm reportId={initial.id} />}
+
+        {activeTab == 9 && <PharmForm reportId={initial.id} />}
 
         {activeTab == 6 && (
           //   <ConclusionForm values={sumCon} onChangeHandler={handleSumCon} />

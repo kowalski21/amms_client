@@ -10,5 +10,5 @@ export const getClientReferenceNumber = ({
 
   const reportRef = `PHT/AMMS/${area_short_name}-${client_no}/${year}`;
 
-  return reportRef;
+  return reportRef.toUpperCase();
 };

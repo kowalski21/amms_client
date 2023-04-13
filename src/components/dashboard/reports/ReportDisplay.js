@@ -8,6 +8,7 @@ const ReportDisplay = () => {
   const [activePage, setActivePage] = useState(1);
   const [queryKey, setQueryKey] = useState({
     fields: "*,client.*,area.id,area.name,area.short_name",
+    // fields: "*.*",
     limit: 10,
     meta: "*",
     page: 1,

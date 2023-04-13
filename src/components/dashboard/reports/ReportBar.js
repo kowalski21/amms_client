@@ -1,6 +1,6 @@
 import { useClients } from "@/hooks/client";
 import { useStations } from "@/hooks/station";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SelectPicker } from "rsuite";
 const ReportBar = ({ handleQuery }) => {
   const [station, setStation] = useState("");
@@ -64,17 +64,30 @@ const ReportBar = ({ handleQuery }) => {
   });
   const handleClientSearch = (keyword, e) => {
     setSearch(keyword);
-    if (keyword) {
-      setQueryKey({ ...queryKey, search: keyword });
-    } else {
-      setQueryKey({
-        fields: "*,area.id,area.name",
-        limit: 10,
-        meta: "*",
-        filter: {},
-      });
-    }
+    // if (keyword) {
+    //   setQueryKey({ ...queryKey, search: keyword });
+    // } else {
+    //   setQueryKey({
+    //     fields: "*,area.id,area.name",
+    //     limit: 10,
+    //     meta: "*",
+    //     filter: {},
+    //   });
+    // }
   };
+  useEffect(() => {
+    if (search) {
+      setQueryKey({ ...queryKey, search: search });
+    }
+    // } else {
+    //   setQueryKey({
+    //     fields: "*,area.id,area.name",
+    //     limit: 10,
+    //     meta: "*",
+    //     filter: {},
+    //   });
+    // }
+  }, [search]);
   return (
     <div>
       <div className="row mt-3 align-items-center ">
@@ -83,7 +96,7 @@ const ReportBar = ({ handleQuery }) => {
             <span>
               <h6>Filter By Area</h6>
             </span>
-            {/* {JSON.stringify(stations)} */}
+            {/* {JSON.stringify({ client, station, status })} */}
             <SelectPicker
               labelKey="name"
               valueKey="id"
@@ -104,8 +117,13 @@ const ReportBar = ({ handleQuery }) => {
             <SelectPicker
               onSearch={handleClientSearch}
               // onChange={handleSearch}
+              onClean={(e) => {
+                setSearch("");
+                setClient("");
+              }}
               onChange={handleClientChange}
               value={client}
+              loading={isLoading}
               data={data ? data.data : []}
               //   onSelect={handleSelectedOption}
               labelKey="name"

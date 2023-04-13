@@ -11,8 +11,8 @@ const GenderSelectForm = ({ initial, onChangeHandler }) => {
     setValue(value);
   };
   const data = [
-    { label: "Male", value: "Male" },
-    { label: "Female", value: "Female" },
+    { label: "Male", value: "M" },
+    { label: "Female", value: "F" },
   ];
   return <InputPicker value={initial} onChange={handleChange} data={data} />;
 };

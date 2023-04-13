@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import UpdateAreaModal from "./UpdateAreaModal";
 
 const ListAreasDisplay = () => {
+  const LIMIT = 50;
   const updateMutation = useMutation({
     mutationFn: async ({ id, payload }) => {
       const res = await directus.items("station").updateOne(id, payload);
@@ -17,7 +18,7 @@ const ListAreasDisplay = () => {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState({
     fields: "*",
-    limit: 4,
+    limit: LIMIT,
     meta: "*",
   });
 
@@ -28,7 +29,7 @@ const ListAreasDisplay = () => {
     } else {
       setQuery({
         fields: "*",
-        limit: 4,
+        limit: LIMIT,
         meta: "*",
       });
     }
@@ -78,7 +79,7 @@ const ListAreasDisplay = () => {
             {data?.data.map((elem) => {
               return (
                 <tr key={elem.id}>
-                  <td>{elem.name}</td>
+                  <td>{elem.name.toUpperCase()}</td>
                   <td>{elem.short_name}</td>
                   <td>
                     {/* <button className="btn btn-primary btn-sm">Update</button> */}
