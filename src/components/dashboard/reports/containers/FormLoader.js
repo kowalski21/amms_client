@@ -40,6 +40,7 @@ const FormLoader = ({ initial, reportId }) => {
     eye_imp: initial?.eye_imp,
     eye_reco: initial?.eye_reco,
   });
+  const [visual, setVisual] = useState(initial?.visual);
   const [lab, setLab] = useState({
     fbc: initial?.fbc,
     fbs: initial.fbs,
@@ -102,6 +103,9 @@ const FormLoader = ({ initial, reportId }) => {
     // setRecommendations(val);
     setConclusion(val);
   };
+  const handleVisual = (key, value) => {
+    setVisual({ ...visual, [key]: value });
+  };
 
   const mutation = useMutation({
     mutationFn: async ({ id, payload }) => {
@@ -128,6 +132,7 @@ const FormLoader = ({ initial, reportId }) => {
       ...sumCon,
       reco,
       conclusion,
+      visual,
     };
     // console.log(Object.keys(payload));
 
@@ -159,7 +164,14 @@ const FormLoader = ({ initial, reportId }) => {
           />
         )}
 
-        {activeTab == 3 && <EyeForm values={eye} onChangeHandler={handleEye} />}
+        {activeTab == 3 && (
+          <EyeForm
+            values={eye}
+            onChangeHandler={handleEye}
+            visual={visual}
+            handleVisual={handleVisual}
+          />
+        )}
 
         {activeTab == 4 && (
           <LabForm

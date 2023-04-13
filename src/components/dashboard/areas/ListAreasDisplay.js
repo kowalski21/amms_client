@@ -118,7 +118,7 @@ const ListAreasDisplay = () => {
         {data && data?.meta && (
           <Paginator
             totalCount={data?.meta?.filter_count}
-            pageSize={4}
+            pageSize={LIMIT}
             currentPage={page}
             onPageChange={handlePageChange}
           />

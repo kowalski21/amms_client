@@ -7,7 +7,7 @@ import { Loader } from "rsuite";
 import UpdateClientModal from "./UpdateClientModal";
 
 const ClientDisplay = () => {
-  const LIMIT = 10;
+  const LIMIT = 50;
   const [area, setArea] = useState("");
   const [name, setName] = useState("");
   const [page, setPage] = useState(1);
@@ -91,12 +91,12 @@ const ClientDisplay = () => {
               return (
                 <tr key={elem.id}>
                   <td>{elem.name}</td>
-                  <td>
-                    {elem.area.short_name}/{elem.client_no}
+                  <td className="text-uppercase">
+                    {elem.area.short_name}-{elem.client_no}
                   </td>
                   <td>{elem.gender}</td>
                   <td>{elem.age}</td>
-                  <td>{elem.area.name}</td>
+                  <td className="text-uppercase">{elem.area.name}</td>
                   <td>
                     {/* <button className="btn btn-primary btn-sm">Update</button> */}
                     <UpdateClientModal initial={elem} />

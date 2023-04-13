@@ -3,15 +3,9 @@ import React from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import { SelectPicker } from "rsuite";
 
-const EyeForm = ({ values, onChangeHandler }) => {
+const EyeForm = ({ values, onChangeHandler, visual, handleVisual }) => {
   return (
     <div className="">
-      {/* <div className="card-header">
-        <div className="card-title">
-          <h4>Eye Examination</h4>
-        </div>
-      </div> */}
-      {/* {JSON.stringify(values)} */}
       <div className="card-body">
         <div className="row mb-2">
           <div className="col-12 text-center">
@@ -21,13 +15,23 @@ const EyeForm = ({ values, onChangeHandler }) => {
           <div className="col-6">
             <h6>Right Eye</h6>
             <FormGroup>
-              <SelectPicker data={getVisualAcuityLabels()} block />
+              <SelectPicker
+                value={visual.right}
+                data={getVisualAcuityLabels()}
+                block
+                onChange={(val) => handleVisual("right", val)}
+              />
             </FormGroup>
           </div>
           <div className="col-6">
             <h6>Left Eye</h6>
             <FormGroup>
-              <SelectPicker data={getVisualAcuityLabels()} block />
+              <SelectPicker
+                value={visual.left}
+                data={getVisualAcuityLabels()}
+                block
+                onChange={(val) => handleVisual("left", val)}
+              />
             </FormGroup>
           </div>
         </div>
@@ -39,29 +43,68 @@ const EyeForm = ({ values, onChangeHandler }) => {
           <div className="col-6">
             <h6>Anterior Segment Right Eye</h6>
             <FormGroup>
-              <Input type="textarea" />
+              <Input
+                value={visual.ant_r}
+                onChange={(e) => handleVisual("ant_r", e.target.value)}
+                type="textarea"
+              />
             </FormGroup>
           </div>
           <div className="col-6">
             <h6>Anterior Segment Left Eye</h6>
             <FormGroup>
-              <Input type="textarea" />
+              <Input
+                value={visual.ant_l}
+                onChange={(e) => handleVisual("ant_l", e.target.value)}
+                type="textarea"
+              />
             </FormGroup>
           </div>
 
           <div className="col-6">
             <h6>Posterior Segment Right Eye</h6>
             <FormGroup>
-              <Input type="textarea" />
+              <Input
+                value={visual.post_r}
+                onChange={(e) => handleVisual("post_r", e.target.value)}
+                type="textarea"
+              />
             </FormGroup>
           </div>
           <div className="col-6">
             <h6>Posterior Segment Left Eye</h6>
             <FormGroup>
-              <Input type="textarea" />
+              <Input
+                value={visual.post_l}
+                onChange={(e) => handleVisual("post_l", e.target.value)}
+                type="textarea"
+              />
+            </FormGroup>
+          </div>
+          {/* refraction */}
+          <div className="col-6">
+            <h6>Refraction Results Right Eye</h6>
+            <FormGroup>
+              <Input
+                value={visual.ref_r}
+                onChange={(e) => handleVisual("ref_r", e.target.value)}
+                type="textarea"
+              />
+            </FormGroup>
+          </div>
+          <div className="col-6">
+            <h6>Refraction Results Left Eye</h6>
+            <FormGroup>
+              <Input
+                value={visual.ref_l}
+                onChange={(e) => handleVisual("ref_l", e.target.value)}
+                type="textarea"
+              />
             </FormGroup>
           </div>
         </div>
+        {/* refraction */}
+
         <div className="row">
           <div className="col-12 text-center">
             <h5>Diagnosis & Recommendation</h5>

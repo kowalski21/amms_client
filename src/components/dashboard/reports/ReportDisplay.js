@@ -3,13 +3,13 @@ import { useReports } from "@/hooks/report";
 import React, { useState } from "react";
 import ReportBar from "./ReportBar";
 import ReportTable from "./ReportTable";
-
+const LIMIT = 50;
 const ReportDisplay = () => {
   const [activePage, setActivePage] = useState(1);
   const [queryKey, setQueryKey] = useState({
     fields: "*,client.*,area.id,area.name,area.short_name",
     // fields: "*.*",
-    limit: 10,
+    limit: 50,
     meta: "*",
     page: 1,
   });
@@ -41,7 +41,7 @@ const ReportDisplay = () => {
         <ReportTable results={data?.data ? data?.data : []} />
 
         <Paginator
-          pageSize={10}
+          pageSize={LIMIT}
           onPageChange={handlePageChange}
           totalCount={data?.meta ? data?.meta?.filter_count : 1}
           currentPage={activePage}

@@ -35,8 +35,8 @@ const ReportTable = ({ results }) => {
                 </span>
               </td>
               <td>
-                <span className=" fw-bold text-hover-primary mb-1 fs-6">
-                  {result.area?.short_name} / {result.client.client_no}
+                <span className=" fw-bold text-hover-primary mb-1 fs-6 text-uppercase">
+                  {result.area?.short_name}-{result.client.client_no}
                 </span>
               </td>
               {/* <td>{result.client.surname}</td> */}

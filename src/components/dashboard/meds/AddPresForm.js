@@ -112,7 +112,7 @@ const AddPresForm = ({ reportId }) => {
         <hr />
         <Modal.Body>
           <div className="container-fluid">
-            {JSON.stringify({
+            {/* {JSON.stringify({
               days,
               frequency,
               qty,
@@ -121,7 +121,7 @@ const AddPresForm = ({ reportId }) => {
               from,
               strength,
               dose,
-            })}
+            })} */}
             <div className="row mb-3">
               <div className="col">
                 <Label>Drug</Label>
