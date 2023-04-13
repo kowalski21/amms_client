@@ -9,7 +9,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CustomProvider } from "rsuite";
 
 export default function MyApp({ Component, pageProps }) {
-  const [queryClient] = React.useState(() => new QueryClient());
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          networkMode: "always",
+        },
+      })
+  );
 
   return (
     <QueryClientProvider client={queryClient}>

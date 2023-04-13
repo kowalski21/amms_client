@@ -84,14 +84,16 @@ const AppSidebar = () => {
             </Link>
           </li>
         </ul>
-        {/* <ul class="navbar-nav flex-fill w-100 mb-2">
+        <ul class="navbar-nav flex-fill w-100 mb-2">
           <li class="nav-item dropdown">
-            <a class="nav-link sc">
-              <i class="fe fe-cloud-lightning fe-16"></i>
-              <span class="ml-3 item-text">Dashboards</span>
-            </a>
+            <Link href={`/dashboard/meds`} legacyBehavior>
+              <a class="nav-link sc">
+                <i class="fe fe-cloud-lightning fe-16"></i>
+                <span class="ml-3 item-text">Drugs</span>
+              </a>
+            </Link>
           </li>
-        </ul> */}
+        </ul>
         {["Administrator"].includes(user.role.name) && (
           <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item dropdown">
