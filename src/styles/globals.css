@@ -4,10 +4,10 @@
 @import "./css/app-light.css";
 @import "./css/feather.css";
 
-*{
+/* *{
   font-family: 'Operator Mono';
 
-}
+} */
 
 .sc{
   cursor: pointer;

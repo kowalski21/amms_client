@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import AvatarSidebar from "./AvatarSidebar";
 import Link from "next/link";
-import { ListInlineItem } from "reactstrap";
+// import { ListInlineItem } from "reactstrap";
 import { useAuthStore } from "@/stores/auth";
 const AppSidebar = () => {
   const user = useAuthStore((state) => state.user);
@@ -27,7 +27,7 @@ const AppSidebar = () => {
                   width: "40px",
                   objectFit: "cover",
                 }}
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGF2YXRhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                src={`/avatar.jpg`}
                 alt=""
               />
             </a>
