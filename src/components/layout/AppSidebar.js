@@ -27,7 +27,7 @@ const AppSidebar = () => {
                   width: "40px",
                   objectFit: "cover",
                 }}
-                src={`/avatar.jpg`}
+                src={`/amms/avatar.jpg`}
                 alt=""
               />
             </a>

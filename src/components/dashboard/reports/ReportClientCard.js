@@ -68,7 +68,7 @@ const ReportClientCard = ({ reportId }) => {
 
     // console.log(payload);
 
-    const lres = await fileApi.post("/", payload, { responseType: "blob" });
+    const lres = await fileApi.post("", payload, { responseType: "blob" });
     // console.log(lres);
 
     // const res = await directus.transport.post(

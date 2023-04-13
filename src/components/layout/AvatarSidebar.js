@@ -21,11 +21,14 @@ const AvatarSidebar = ({ user }) => {
             width: "90px",
             objectFit: "cover",
           }}
-          src={`/avatar.jpg`}
+          src={`/amms/avatar.jpg`}
           alt=""
         />
       </a>
       <p className="text-center mt-2">Username: {user?.email?.split("@")[0]}</p>
+      <p className="text-center text-wrap">
+        Name : {user?.first_name} {user?.last_name}
+      </p>
       <p className="text-center">Role : {user?.role?.name}</p>
       <button className="btn btn-secondary btn-sm mx-5" onClick={handleLogout}>
         Logout
