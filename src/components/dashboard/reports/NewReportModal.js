@@ -10,10 +10,12 @@ import { useRouter } from "next/router";
 import React, { Fragment, useEffect, useState } from "react";
 // import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Modal } from "rsuite";
+import { checkReport } from "@/lib/validate";
 
 const NewReportModal = () => {
   const router = useRouter();
-  const { showMsg } = useNotify();
+  const { showMsg, showError } = useNotify();
+
   const [modal, setModal] = useState(false);
   const toggle = () => {
     setModal(!modal);
@@ -31,7 +33,7 @@ const NewReportModal = () => {
   const [queryKey, setQueryKey] = useState({
     fields: "*,area.id,area.name",
     search: search,
-    limit: 10,
+    limit: 100,
   });
 
   useEffect(() => {
@@ -67,6 +69,8 @@ const NewReportModal = () => {
   };
   const createMutation = useMutation({
     mutationFn: async (payload) => {
+      await checkReport(payload);
+
       const res = await directus.items("report").createOne(payload);
       return res;
     },
@@ -75,6 +79,13 @@ const NewReportModal = () => {
       showMsg("NEW report CREATED !!!");
       router.push(`/dashboard/reports/${data.id}`);
       //   focusManager.setFocused(true);
+    },
+    onError: (error) => {
+      console.log(error?.message);
+      let msg = error?.message
+        ? error?.message
+        : "Error Occured!!,contact IT Team";
+      showError(msg);
     },
   });
   const handleSubmit = () => {

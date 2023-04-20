@@ -4,6 +4,7 @@ import { Label, InputGroup, InputGroupText, Input } from "reactstrap";
 import { getBmiStatus, getBpStatus } from "@/lib/status";
 import { SelectPicker } from "rsuite";
 const BP_STATUS = [
+  { label: "Low", value: "Low" },
   { label: "Normal", value: "Normal" },
   { label: "Elevated", value: "Elevated" },
   { label: "High", value: "High" },

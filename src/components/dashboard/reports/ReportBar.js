@@ -12,7 +12,7 @@ const ReportBar = ({ handleQuery }) => {
   const [search, setSearch] = useState("");
   const [queryKey, setQueryKey] = useState({
     fields: "*,area.id,area.name",
-    limit: 10,
+    limit: 100,
     meta: "*",
     filter: {},
   });
