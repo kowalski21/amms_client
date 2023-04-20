@@ -23,9 +23,15 @@ const ReportClientCard = ({ reportId }) => {
 
   const mutation = useMutation({
     mutationFn: async (id) => {
+      let authorPayload = {
+        id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        completed: DateTime.now(),
+      };
       const res = await directus
         .items("report")
-        .updateOne(id, { status: "published" });
+        .updateOne(id, { status: "published", meta: authorPayload });
       return res;
     },
     onSuccess: (data) => {
