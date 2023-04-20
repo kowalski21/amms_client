@@ -6,7 +6,7 @@ export const getBmiStatus = (number) => {
     return "Normal";
   }
   if (number >= 25 && number < 30) {
-    return "Normal";
+    return "Overweight";
   }
   if (number >= 30) {
     return "Obese";
@@ -21,15 +21,16 @@ export const getBpStatus = (bp) => {
   sys = parseInt(bp.split("/")[0]);
   dys = parseInt(bp.split("/")[1]);
 
-  if (sys <= 120 && dys <= 80) {
+  if (sys < 130 && dys < 90) {
     return "Normal";
   }
-  if (between(sys, 120, 129) && dys < 80) {
+  if (between(sys, 130, 139) && dys >= 90) {
     return "Elevated";
   }
-  if (between(sys, 120, 129) && dys < 80) {
-    return "Elevated";
-  } else {
-    return "High Blood Pressure";
+  if (between(sys, 140, 129) && dys < 80) {
+    return "High";
   }
+  // else {
+  //   return "High Blood Pressure";
+  // }
 };

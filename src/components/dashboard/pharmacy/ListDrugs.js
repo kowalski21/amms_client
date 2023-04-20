@@ -2,12 +2,21 @@ import { useMeds } from "@/hooks/meds";
 import React from "react";
 import { Input } from "reactstrap";
 import ServeDrug from "./ServeDrug";
+import { useRouter } from "next/router";
 
-const ListDrugs = ({ reportId }) => {
+const ListDrugs = () => {
+  const router = useRouter();
+  const reportId = router.query["report"];
   const { data, isLoading } = useMeds({
     queryKey: ["pharmacy", reportId],
     query: {
       fields: "*,product.id,product.name,freq.id,freq.name",
+      filter: {
+        report: reportId,
+      },
+    },
+    options: {
+      enabled: reportId ? true : false,
     },
   });
   return (

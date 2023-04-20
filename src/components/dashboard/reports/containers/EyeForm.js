@@ -9,6 +9,20 @@ const EyeForm = ({ values, onChangeHandler, visual, handleVisual }) => {
       <div className="card-body">
         <div className="row mb-2">
           <div className="col-12 text-center">
+            <h5>Complaints</h5>
+          </div>
+          <div className="col-12">
+            <FormGroup>
+              <Input
+                value={visual?.com}
+                onChange={(e) => handleVisual("com", e.target.value)}
+                type="textarea"
+              />
+            </FormGroup>
+          </div>
+        </div>
+        <div className="row mb-2">
+          <div className="col-12 text-center">
             <h5>Visual Acuity Examination</h5>
           </div>
           <hr />

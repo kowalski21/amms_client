@@ -49,7 +49,7 @@ const ServeDrug = ({ pres }) => {
   return (
     <Fragment>
       {pres?.status == "published" ? (
-        <button className="btn btn-primary" onClick={handleModal}>
+        <button className="btn btn-secondary" onClick={handleModal}>
           Update
         </button>
       ) : (
@@ -82,6 +82,10 @@ const ServeDrug = ({ pres }) => {
               value={qty}
               onChange={(e) => setQty(e.target.value)}
             />
+          </div>
+          <div className="container-fluid mt-2">
+            <Label>Notes</Label>
+            <Input type="textarea" value={pres?.notes} disabled />
           </div>
         </Modal.Body>
         <hr />

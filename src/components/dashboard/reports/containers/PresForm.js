@@ -4,12 +4,21 @@ import PresCard from "../../meds/PresCard";
 import { useMeds } from "@/hooks/meds";
 import RemovePres from "../../meds/RemovePres";
 import UpdatePresForm from "../../meds/UpdatePresForm";
+import { useRouter } from "next/router";
 
-const PresForm = ({ reportId }) => {
+const PresForm = () => {
+  const router = useRouter();
+  const reportId = router.query["report"];
   const { data, isLoading } = useMeds({
     queryKey: ["medications", reportId],
     query: {
       fields: "*,product.id,product.name,freq.id,freq.name",
+      filter: {
+        report: reportId,
+      },
+    },
+    options: {
+      enabled: reportId ? true : false,
     },
   });
   return (
@@ -18,6 +27,7 @@ const PresForm = ({ reportId }) => {
         <div className="col">
           <h4> Prescriptions</h4>
         </div>
+        {/* {JSON.stringify(reportId)} */}
         <div className="col">
           <AddPresForm reportId={reportId} />
         </div>

@@ -1,7 +1,7 @@
 import { useFormStore } from "@/stores/form";
 import React from "react";
 
-const PEForm = ({ values, onChangeHandler, client }) => {
+const PEForm = ({ values, onChangeHandler, client, metaHandler, visual }) => {
   //   const client = useFormStore((state) => state.client);
   return (
     <div className="">
@@ -63,7 +63,7 @@ const PEForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          {client && client?.gender == "Female" && (
+          {client && client?.gender == "F" && (
             <div className="col-md-3">
               <div className="form-group">
                 <label htmlFor="" className="form-label">
@@ -102,6 +102,18 @@ const PEForm = ({ values, onChangeHandler, client }) => {
               <textarea
                 value={values.cns}
                 onChange={(e) => onChangeHandler("cns", e.target.value)}
+                className="form-control "
+              />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+              <label htmlFor="" className="form-label">
+                Other Findings
+              </label>
+              <textarea
+                value={visual?.other}
+                onChange={(e) => metaHandler("other", e.target.value)}
                 className="form-control "
               />
             </div>

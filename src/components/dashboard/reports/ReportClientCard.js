@@ -43,7 +43,7 @@ const ReportClientCard = ({ reportId }) => {
     delete tmp["id"];
     tmp["wei"] = `${data.weight}kg`;
     tmp["height"] = `${data.height}m`;
-    tmp["bp"] = `${data.bp}`;
+    tmp["bp"] = `${data.sys}/${data.dias}(${data.bp})`;
     tmp["age"] = `${data.client.age} YEARS`;
     tmp["fbs"] = `${data.fbs}mmol/l`;
     delete tmp["weight"];
@@ -87,7 +87,7 @@ const ReportClientCard = ({ reportId }) => {
       link.href = href;
       link.setAttribute(
         "download",
-        `${payload.client.name}_${payload.client.ref}.pdf`
+        `${payload.client.name}_${payload.client.ref}.docx`
       ); //or any other extension
 
       // print(link.href);

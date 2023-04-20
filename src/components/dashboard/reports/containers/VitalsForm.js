@@ -2,13 +2,21 @@ import { useFormStore } from "@/stores/form";
 import React, { useEffect, useState } from "react";
 import { Label, InputGroup, InputGroupText, Input } from "reactstrap";
 import { getBmiStatus, getBpStatus } from "@/lib/status";
+import { SelectPicker } from "rsuite";
+const BP_STATUS = [
+  { label: "Normal", value: "Normal" },
+  { label: "Elevated", value: "Elevated" },
+  { label: "High", value: "High" },
+];
 const VitalsForm = ({ values, onChangeHandler }) => {
   const [sys, setSys] = useState("");
   const [dias, setDias] = useState("");
   const [bmi, setBmi] = useState("");
   const getBmiValue = () => {
     if (values.height && values.weight) {
-      const tmp = parseFloat(values.weight) / parseFloat(values.height);
+      const tmp =
+        parseFloat(values.weight) /
+        (parseFloat(values.height) * parseFloat(values.height));
       // setBmi(tmp.toFixed(2));
       getBmi(tmp.toFixed(2));
       return tmp.toFixed(2);
@@ -18,19 +26,19 @@ const VitalsForm = ({ values, onChangeHandler }) => {
       return "";
     }
   };
-  const getBpValue = () => {
-    if (values.sys && values.dias) {
-      let mp = `${values.sys}/${values.dias}`;
-      let mpStatus = getBpStatus(mp);
-      onChangeHandler("bp", `${values.sys}/${values.dias}mmHg(${mpStatus})`);
-    } else {
-      onChangeHandler("bp", "");
-    }
-  };
+  // const getBpValue = () => {
+  //   if (values.sys && values.dias) {
+  //     let mp = `${values.sys}/${values.dias}`;
+  //     let mpStatus = getBpStatus(mp);
+  //     onChangeHandler("bp", `${values.sys}/${values.dias}mmHg(${mpStatus})`);
+  //   } else {
+  //     onChangeHandler("bp", "");
+  //   }
+  // };
 
-  useEffect(() => {
-    getBpValue();
-  }, [values.sys, values.dias]);
+  // useEffect(() => {
+  //   getBpValue();
+  // }, [values.sys, values.dias]);
 
   useEffect(() => {
     onChangeHandler("bmi", getBmiValue());
@@ -109,6 +117,18 @@ const VitalsForm = ({ values, onChangeHandler }) => {
               size="lg"
             />
           </InputGroup>
+        </div>
+      </div>
+      <div className="col-md-3">
+        <div className="form-outline mb-4">
+          <Label>Blood Pressue Status </Label>
+          <SelectPicker
+            value={values.bp}
+            data={BP_STATUS}
+            onChange={(val) => onChangeHandler("bp", val)}
+            block
+            size="lg"
+          />
         </div>
       </div>
     </div>

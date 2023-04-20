@@ -159,7 +159,9 @@ const FormLoader = ({ initial, reportId }) => {
         {activeTab == 2 && (
           <PEForm
             values={physical}
+            visual={visual}
             onChangeHandler={handlePhysicals}
+            metaHandler={handleVisual}
             client={initial.client}
           />
         )}

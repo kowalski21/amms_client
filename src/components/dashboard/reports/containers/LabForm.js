@@ -145,7 +145,7 @@ const LabForm = ({ values, onChangeHandler, client }) => {
               </select>
             </div>
           </div>
-          {client?.gender == "Male" ? (
+          {client?.gender == "M" ? (
             <div className="col-md-3">
               <div className="form-group mb-3">
                 <label htmlFor="" className="form-label">
