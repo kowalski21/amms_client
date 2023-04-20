@@ -9,7 +9,7 @@ const BP_STATUS = [
   { label: "Elevated", value: "Elevated" },
   { label: "High", value: "High" },
 ];
-const VitalsForm = ({ values, onChangeHandler }) => {
+const VitalsForm = ({ values, onChangeHandler, visual, metaHandler }) => {
   const [sys, setSys] = useState("");
   const [dias, setDias] = useState("");
   const [bmi, setBmi] = useState("");
@@ -67,6 +67,28 @@ const VitalsForm = ({ values, onChangeHandler }) => {
   return (
     <div className="row">
       {/* {JSON.stringify(values)} */}
+      <div className="col-md-2">
+        <div className="form-outline mb-4">
+          <Label>Temperature(Celcius)</Label>
+          <input
+            type="number"
+            className="form-control form-control-lg"
+            value={visual?.temp}
+            onChange={(e) => metaHandler("temp", e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="col-md-2">
+        <div className="form-outline mb-4">
+          <Label>Pulse(bpm)</Label>
+          <input
+            type="number"
+            className="form-control form-control-lg"
+            value={visual?.pulse}
+            onChange={(e) => metaHandler("pulse", e.target.value)}
+          />
+        </div>
+      </div>
       <div className="col-md-2">
         <div className="form-outline mb-4">
           <Label>Height(m)</Label>

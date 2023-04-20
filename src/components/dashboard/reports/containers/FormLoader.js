@@ -154,7 +154,12 @@ const FormLoader = ({ initial, reportId }) => {
         {/* {permissions.includes(1)} */}
         {/* {JSON.stringify(permissions.includes(1))} */}
         {activeTab == 1 && (
-          <VitalsForm values={vitals} onChangeHandler={handleVitals} />
+          <VitalsForm
+            values={vitals}
+            onChangeHandler={handleVitals}
+            metaHandler={handleVisual}
+            visual={visual}
+          />
         )}
         {activeTab == 2 && (
           <PEForm
