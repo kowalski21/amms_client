@@ -10,7 +10,7 @@ const AuthLoginWrapper = ({ children }) => {
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                   <img
-                    src="/amms/auth_image_2.jpeg"
+                    src={`/amms/auth_image_2.jpeg`}
                     // src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                     alt="login form"
                     className="img-fluid h-100 bg_overlay"
@@ -25,7 +25,7 @@ const AuthLoginWrapper = ({ children }) => {
                     <div className="row">
                       <div className="col text-center">
                         <img
-                          src="/amms/main.jpg"
+                          src={`/amms/main.jpg`}
                           className="text-center mb-4"
                           alt=""
                           style={{

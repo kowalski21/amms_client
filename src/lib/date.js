@@ -15,6 +15,9 @@ export const addOneDay = (dt) => {
 export const formatIsoDt = (dt) => {
   return DateTime.fromISO(dt).toISODate();
 };
+export const formatFullDate = (dt) => {
+  return DateTime.fromISO(dt).toLocaleString(DateTime.DATETIME_FULL);
+};
 
 export const getYears = (dt) => {
   let tmp = DateTime.fromISO(dt);

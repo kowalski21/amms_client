@@ -124,7 +124,7 @@ const VitalsForm = ({ values, onChangeHandler, visual, metaHandler }) => {
       </div>
       <div className="col-md-3">
         <div className="form-outline mb-4">
-          <Label>Blood Pressure (mmHg) ({getLocalBp(values.bp)}) </Label>
+          <Label>Blood Pressure (mmHg) </Label>
           <InputGroup>
             <Input
               placeholder="Systolic"
@@ -144,7 +144,7 @@ const VitalsForm = ({ values, onChangeHandler, visual, metaHandler }) => {
       </div>
       <div className="col-md-3">
         <div className="form-outline mb-4">
-          <Label>Blood Pressue Status </Label>
+          <Label>Blood Pressure Status </Label>
           <SelectPicker
             value={values.bp}
             data={BP_STATUS}

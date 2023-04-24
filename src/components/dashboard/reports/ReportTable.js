@@ -1,5 +1,5 @@
 import React from "react";
-import { formatIsoDt } from "@/lib/date";
+import { formatFullDate, formatIsoDt } from "@/lib/date";
 import { useRouter } from "next/router";
 import Link from "next/link";
 const ReportTable = ({ results }) => {
@@ -66,12 +66,21 @@ const ReportTable = ({ results }) => {
                 </span>
               </td>
               <td>
-                <span className="">{formatIsoDt(result.date_created)}</span>
+                {/* <span className="">{formatIsoDt(result.date_created)}</span> */}
+                <span>{formatFullDate(result.date_created)}</span>
               </td>
 
               <td>
-                <Link href={`/dashboard/reports/${result.id}`}>
-                  <button className="btn btn-primary btn-sm">View</button>
+                <Link href={`/dashboard/reports/${result.id}`} legacyBehavior>
+                  <a
+                    className="btn btn-primary  btn-sm"
+                    // href={`/dashboard/reports/${result.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View
+                  </a>
+                  {/* <button className="btn btn-primary btn-sm">View</button> */}
                 </Link>
               </td>
             </tr>

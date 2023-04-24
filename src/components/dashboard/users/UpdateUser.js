@@ -24,6 +24,7 @@ const UpdateUser = ({ user }) => {
     role: user?.role?.id,
     first_name: user?.first_name,
     last_name: user?.last_name,
+    mobile: user?.mobile,
   });
   const resetForm = () => {
     setForm({
@@ -82,6 +83,14 @@ const UpdateUser = ({ user }) => {
               <Label>Last Name</Label>
               <Form.Control
                 name="last_name"
+                // type="password"
+                autoComplete="off"
+              />
+            </Form.Group>
+            <Form.Group controlId="mobile">
+              <Label>Phone Number</Label>
+              <Form.Control
+                name="mobile"
                 // type="password"
                 autoComplete="off"
               />

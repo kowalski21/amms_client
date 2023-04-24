@@ -36,6 +36,7 @@ const NewUserModal = () => {
     last_name: "",
     password: "",
     role: "",
+    mobile: "",
   });
 
   const resetForm = () => {
@@ -45,6 +46,7 @@ const NewUserModal = () => {
       last_name: "",
       password: "",
       role: "",
+      mobile: "",
     });
   };
 
@@ -127,6 +129,17 @@ const NewUserModal = () => {
                 />
 
                 <label class="form-label mt-2">Role</label>
+              </div>
+            </div>
+            <div className="col">
+              <div class="form-outline mb-4 mt-2 ml-2">
+                <input
+                  type="text"
+                  class="form-control form-control-md"
+                  onChange={(e) => handleFormChange("mobile", e.target.value)}
+                  value={form.mobile}
+                />
+                <label class="form-label mt-2">Phone Number</label>
               </div>
             </div>
           </div>

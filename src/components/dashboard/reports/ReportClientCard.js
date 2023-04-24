@@ -2,7 +2,7 @@ import { useReport } from "@/hooks/report";
 import React from "react";
 import { Loader } from "rsuite";
 import TabLinks from "./TabLinks";
-import { getClientReferenceNumber } from "@/lib/utils";
+import { getClientReferenceNumber, getFinalizer } from "@/lib/utils";
 import { focusManager, useMutation } from "@tanstack/react-query";
 import { directus, fileApi } from "@/lib/api";
 import { DateTime } from "luxon";
@@ -28,6 +28,7 @@ const ReportClientCard = ({ reportId }) => {
         first_name: user.first_name,
         last_name: user.last_name,
         completed: DateTime.now(),
+        mobile: user?.mobile,
       };
       const res = await directus
         .items("report")
@@ -119,6 +120,12 @@ const ReportClientCard = ({ reportId }) => {
           <div className="row">
             <div className="col-md-9">
               <h3 class="mb-3">{data.client.name}</h3>
+              <p className="my-2 mb-3 h6">
+                Report Date :{" "}
+                {DateTime.fromISO(data.date_created).toLocaleString(
+                  DateTime.DATETIME_FULL
+                )}{" "}
+              </p>
               <p class="small mb-0">
                 <i class="fe fe-cast"></i> <span class="mx-2"></span>
                 <strong>Age {data.client.age} </strong> |{" "}
@@ -137,6 +144,12 @@ const ReportClientCard = ({ reportId }) => {
                     client_no: data.client.client_no,
                   })}
                 </strong>
+                {/* {JSON.stringify(data)} */}
+                {data?.status === "published" && (
+                  <strong className="text-primary">
+                    | Finalized By {getFinalizer(data?.meta)}
+                  </strong>
+                )}
               </p>
             </div>
             {["Administrator"].includes(user?.role.name) && (

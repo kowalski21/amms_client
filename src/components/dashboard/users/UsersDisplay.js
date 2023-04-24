@@ -12,7 +12,7 @@ const UsersDisplay = () => {
     setQuery({ ...query, page: page });
   };
   const [query, setQuery] = useState({
-    fields: "id,email,first_name,last_name,role.id,role.name",
+    fields: "id,email,first_name,last_name,role.id,role.name,mobile",
     meta: "*",
   });
   const { data } = useUsers(["usersManage", query], query, {

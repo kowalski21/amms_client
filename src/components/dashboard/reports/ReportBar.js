@@ -1,9 +1,10 @@
 import { useClients } from "@/hooks/client";
 import { useStations } from "@/hooks/station";
 import React, { useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 import { SelectPicker } from "rsuite";
 const ReportBar = ({ handleQuery }) => {
-  const [station, setStation] = useState("");
+  const [station, setStation] = useLocalStorage("");
   const [stations, setStations] = useState([]);
   const [sDate, setSDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());

@@ -91,7 +91,7 @@ const AddPresForm = ({ reportId }) => {
       return res;
     },
     onSuccess: (data) => {
-      queryClient.resetQueries(["reportDetail", reportId]);
+      // queryClient.resetQueries(["reportDetail", reportId]);
       focusManager.setFocused(true);
       handleModal();
       showMsg("PRESCRIPTION ADDED");
